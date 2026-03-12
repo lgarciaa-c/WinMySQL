@@ -36,6 +36,7 @@
             dgvAlumnos = new DataGridView();
             cmsDataA = new ContextMenuStrip(components);
             eliminarToolStripMenuItem = new ToolStripMenuItem();
+            btnImportar = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -48,11 +49,13 @@
             // 
             splitContainer1.Dock = DockStyle.Fill;
             splitContainer1.Location = new Point(0, 0);
+            splitContainer1.Margin = new Padding(3, 2, 3, 2);
             splitContainer1.Name = "splitContainer1";
             splitContainer1.Orientation = Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(btnImportar);
             splitContainer1.Panel1.Controls.Add(btnAgregarAlumnos);
             splitContainer1.Panel1.Controls.Add(txtAlumnos);
             splitContainer1.Panel1.Controls.Add(label1);
@@ -60,15 +63,17 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(dgvAlumnos);
-            splitContainer1.Size = new Size(817, 495);
-            splitContainer1.SplitterDistance = 118;
+            splitContainer1.Size = new Size(715, 371);
+            splitContainer1.SplitterDistance = 88;
+            splitContainer1.SplitterWidth = 3;
             splitContainer1.TabIndex = 0;
             // 
             // btnAgregarAlumnos
             // 
-            btnAgregarAlumnos.Location = new Point(653, 61);
+            btnAgregarAlumnos.Location = new Point(576, 64);
+            btnAgregarAlumnos.Margin = new Padding(3, 2, 3, 2);
             btnAgregarAlumnos.Name = "btnAgregarAlumnos";
-            btnAgregarAlumnos.Size = new Size(94, 29);
+            btnAgregarAlumnos.Size = new Size(82, 22);
             btnAgregarAlumnos.TabIndex = 2;
             btnAgregarAlumnos.Text = "AGREGAR";
             btnAgregarAlumnos.UseVisualStyleBackColor = true;
@@ -76,17 +81,18 @@
             // 
             // txtAlumnos
             // 
-            txtAlumnos.Location = new Point(39, 61);
+            txtAlumnos.Location = new Point(34, 46);
+            txtAlumnos.Margin = new Padding(3, 2, 3, 2);
             txtAlumnos.Name = "txtAlumnos";
-            txtAlumnos.Size = new Size(558, 27);
+            txtAlumnos.Size = new Size(489, 23);
             txtAlumnos.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(39, 28);
+            label1.Location = new Point(34, 21);
             label1.Name = "label1";
-            label1.Size = new Size(52, 20);
+            label1.Size = new Size(42, 15);
             label1.TabIndex = 0;
             label1.Text = "Buscar";
             // 
@@ -95,9 +101,10 @@
             dgvAlumnos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvAlumnos.Dock = DockStyle.Fill;
             dgvAlumnos.Location = new Point(0, 0);
+            dgvAlumnos.Margin = new Padding(3, 2, 3, 2);
             dgvAlumnos.Name = "dgvAlumnos";
             dgvAlumnos.RowHeadersWidth = 51;
-            dgvAlumnos.Size = new Size(817, 373);
+            dgvAlumnos.Size = new Size(715, 280);
             dgvAlumnos.TabIndex = 0;
             dgvAlumnos.CellContentDoubleClick += dgvAlumnos_CellContentDoubleClick;
             // 
@@ -106,21 +113,32 @@
             cmsDataA.ImageScalingSize = new Size(20, 20);
             cmsDataA.Items.AddRange(new ToolStripItem[] { eliminarToolStripMenuItem });
             cmsDataA.Name = "cmsDataA";
-            cmsDataA.Size = new Size(211, 56);
+            cmsDataA.Size = new Size(118, 26);
             // 
             // eliminarToolStripMenuItem
             // 
             eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
-            eliminarToolStripMenuItem.Size = new Size(210, 24);
+            eliminarToolStripMenuItem.Size = new Size(117, 22);
             eliminarToolStripMenuItem.Text = "Eliminar";
             eliminarToolStripMenuItem.Click += eliminarToolStripMenuItem_Click;
             // 
+            // btnImportar
+            // 
+            btnImportar.Location = new Point(583, 21);
+            btnImportar.Name = "btnImportar";
+            btnImportar.Size = new Size(75, 23);
+            btnImportar.TabIndex = 3;
+            btnImportar.Text = "Importar";
+            btnImportar.UseVisualStyleBackColor = true;
+            btnImportar.Click += btnImportar_Click;
+            // 
             // FrmAlumnos
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(817, 495);
+            ClientSize = new Size(715, 371);
             Controls.Add(splitContainer1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FrmAlumnos";
             Text = "FrmAlumnos";
             Activated += FrmAlumnos_Activated;
@@ -144,5 +162,6 @@
         private Button btnAgregarAlumnos;
         private ContextMenuStrip cmsDataA;
         private ToolStripMenuItem eliminarToolStripMenuItem;
+        private Button btnImportar;
     }
 }

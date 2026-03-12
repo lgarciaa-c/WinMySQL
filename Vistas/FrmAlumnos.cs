@@ -5,13 +5,15 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using WINMYSQL.CLASES;
+using WinMySQL.Clases;
 using WINMYSQL.LISTAS;
+using OfficeOpenXMl;
 
 namespace WINMYSQL.VISTAS
 {
     public partial class FrmAlumnos : Form
     {
+        OpenFileDialog ofdExcel = new OpenFileDialog();
         Datos Datos = new Datos();
         DataSet ds;
         public FrmAlumnos()
@@ -79,5 +81,36 @@ namespace WINMYSQL.VISTAS
             }
         }
 
+        private void btnImportar_Click(object sender, EventArgs e)
+        {
+            string path;
+            DialogResult dr = ofdExcel.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                path = ofdExcel.FileName;
+                ExcelPackage.License.SetNonCommercialPersonal("Giovanni");
+                using (ExcelPackage excel = new ExcelPackage(new FileInfo(path)))
+                {
+                    ExcelWorksheet ws = excel.Workbook.Worksheets[0];
+                    int rowCount = ws.Dimension.Rows;
+                    int columnn = ws.Dimension.Columns;
+                    DataTable dt = new DataTable();
+                    for (int col = 1; col <= columnn; col++)
+                    {
+                        dt.Columns.Add(ws.Cells[1, col].Value.ToString());
+                    }
+                    for (int row = 2; row <= rowCount; row++)
+                    {
+                        DataRow drnew = dt.NewRow();
+                        for (int col = 1; col <= columnn; col++)
+                        {
+                            drnew[col - 1] = ws.Cells[row, col].Value.ToString();
+                        }
+                        dt.Rows.Add(drnew);
+                        String comando;
+                    }
+                }
+            }
+        }
     }
 }
