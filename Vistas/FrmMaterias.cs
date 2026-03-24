@@ -5,93 +5,79 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using WINMYSQL.CLASES;
-using WINMYSQL.VISTAS;
+using WinMySQL.Clases;
 
-namespace WINMYSQL.LISTAS
+namespace WinMySQL.Vistas
 {
-    public partial class FrmMaterias : Form
+    public partial class frmMaterias : Form
     {
-        Datos Datos = new Datos();
+        Datos datos = new Datos();
         DataSet ds;
-        public FrmMaterias()
+        public frmMaterias()
         {
             InitializeComponent();
         }
 
+        private void frmMaterias_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                ds = datos.ejecutarComando("Select * from Materias");
+                if (ds != null)
+                {
+                    dgvMaterias.DataSource = ds.Tables[0];
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         private void btnAgregarMateria_Click(object sender, EventArgs e)
         {
-            FrmMateria materia = new FrmMateria();
-            materia.ShowDialog();
+            FrmMateria mat = new FrmMateria();
+            mat.Show();
         }
 
-
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void FrmMaterias_Load(object sender, EventArgs e)
+        private void frmMaterias_Activated(object sender, EventArgs e)
         {
             try
             {
-                ds = Datos.ejecutar("Select * from Materia");
+                ds = datos.ejecutarComando("Select * from Materias");
                 if (ds != null)
                 {
                     dgvMaterias.DataSource = ds.Tables[0];
                 }
             }
-            catch (Exception ex) { }
-
-
-        }
-
-        private void FrmMaterias_Activated(object sender, EventArgs e)
-        {
-            try
+            catch (Exception ex)
             {
-                ds = Datos.ejecutar("Select * from Materia");
-                if (ds != null)
-                {
-                    dgvMaterias.DataSource = ds.Tables[0];
-                }
+
             }
-            catch (Exception ex) { }
         }
 
         private void dgvMaterias_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
-            FrmMateria materia = new FrmMateria(Convert.ToInt32(dgvMaterias.CurrentRow.Cells[0].Value),
-                                                                dgvMaterias.CurrentRow.Cells[1].Value.ToString(),
-                                                                dgvMaterias.CurrentRow.Cells[2].Value.ToString());
-            materia.ShowDialog();
-        }
-
-        private void btnAgregarMaterias_Click(object sender, EventArgs e)
-        {
-            FrmMateria materia = new FrmMateria();
+            FrmMateria materia = new FrmMateria(
+            Convert.ToInt32(dgvMaterias.CurrentRow.Cells[0].Value),
+                dgvMaterias.CurrentRow.Cells[1].Value.ToString(),
+                dgvMaterias.CurrentRow.Cells[2].Value.ToString());
             materia.ShowDialog();
         }
 
         private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int idMateria = Convert.ToInt32(dgvMaterias.CurrentRow.Cells[0].Value);
-            if(MessageBox.Show("Deseas Eliminar la Materia:" 
-                + dgvMaterias.CurrentRow.Cells[1].Value.ToString(),
-                "Sistema",MessageBoxButtons.YesNo,MessageBoxIcon.Question ) == DialogResult.Yes)
+            int idmateria = Convert.ToInt32(dgvMaterias.CurrentRow.Cells[0].Value);
+            if(MessageBox.Show("Deseas eliminar la materia: " + dgvMaterias.CurrentRow.Cells[1].Value.ToString(), "sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                bool f = Datos.ejecutarcomando($"Delete from Materia where idMateria={idMateria}");
-                if (f)
+                bool f = datos.ejecutarcomando($"delete from Materias where IdMaterias={idmateria}");
+                if (f == true)
                 {
-                    MessageBox.Show("Materia Eliminada","Sistema");
-                    
+                    MessageBox.Show("materia eliminada con exito","Sistema");
                 }
-                else
-                {
-                    MessageBox.Show("Error", "Sistema");
-                }
+                else MessageBox.Show("error al eliminar la materia","Sistema");
             }
+            
         }
     }
 }

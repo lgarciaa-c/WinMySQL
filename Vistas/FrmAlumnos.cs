@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,108 +7,117 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using WinMySQL.Clases;
-using WINMYSQL.LISTAS;
-using OfficeOpenXMl;
 
-namespace WINMYSQL.VISTAS
+namespace WinMySQL.Vistas
 {
     public partial class FrmAlumnos : Form
     {
-        OpenFileDialog ofdExcel = new OpenFileDialog();
-        Datos Datos = new Datos();
+        Datos datos = new Datos();
         DataSet ds;
+        OpenFileDialog ofdExcel = new OpenFileDialog();
         public FrmAlumnos()
         {
             InitializeComponent();
-        }
-
-        private void btnAgregarAlumnos_Click(object sender, EventArgs e)
-        {
-            FrmAlumno alumno = new FrmAlumno();
-            alumno.ShowDialog();
         }
 
         private void FrmAlumnos_Activated(object sender, EventArgs e)
         {
             try
             {
-                ds = Datos.ejecutar("Select * from Alumnos");
+                ds = datos.ejecutarComando("Select * from Alumnos");
                 if (ds != null)
                 {
                     dgvAlumnos.DataSource = ds.Tables[0];
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void FrmAlumnos_Load(object sender, EventArgs e)
         {
             try
             {
-                ds = Datos.ejecutar("Select * from Alumnos");
+                ds = datos.ejecutarComando("Select * from Alumnos");
                 if (ds != null)
                 {
                     dgvAlumnos.DataSource = ds.Tables[0];
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void btnAgregarAlumno_Click(object sender, EventArgs e)
+        {
+            FrmAlumno alumn = new FrmAlumno();
+            alumn.Show();
         }
 
         private void dgvAlumnos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            FrmAlumno Alumno = new FrmAlumno(Convert.ToInt32(dgvAlumnos.CurrentRow.Cells[0].Value),
-                                                             dgvAlumnos.CurrentRow.Cells[1].Value.ToString(),
-                                                             dgvAlumnos.CurrentRow.Cells[2].Value.ToString());
-            Alumno.ShowDialog();
+            FrmAlumno alumno = new FrmAlumno(
+            Convert.ToInt32(dgvAlumnos.CurrentRow.Cells[0].Value),
+                dgvAlumnos.CurrentRow.Cells[1].Value.ToString(),
+                dgvAlumnos.CurrentRow.Cells[2].Value.ToString(),
+                dgvAlumnos.CurrentRow.Cells[3].Value.ToString(),
+                Convert.ToInt32(dgvAlumnos.CurrentRow.Cells[4].Value),
+                Convert.ToInt32(dgvAlumnos.CurrentRow.Cells[5].Value),
+                dgvAlumnos.CurrentRow.Cells[6].Value.ToString());
+            alumno.ShowDialog();
         }
 
         private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int idAlumnos = Convert.ToInt32(dgvAlumnos.CurrentRow.Cells[0].Value);
-            if (MessageBox.Show("Deseas Eliminar El Alumno:"
-                + dgvAlumnos.CurrentRow.Cells[1].Value.ToString(),
-                "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            int idalumno = Convert.ToInt32(dgvAlumnos.CurrentRow.Cells[0].Value);
+            if (MessageBox.Show("Deseas eliminar al alumno: " + dgvAlumnos.CurrentRow.Cells[1].Value.ToString() + " " + dgvAlumnos.CurrentRow.Cells[2].Value.ToString() + " " + dgvAlumnos.CurrentRow.Cells[3].Value.ToString(),
+                "sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                bool f = Datos.ejecutarcomando($"Delete from Alumnos where idAlumnos={idAlumnos}");
-                if (f)
+                bool f = datos.ejecutarcomando($"delete from Alumnos where IdAlumnos={idalumno}");
+                if (f == true)
                 {
-                    MessageBox.Show("Alumno Eliminado", "Sistema");
-
+                    MessageBox.Show("Alumno eliminado con exito", "Sistema");
                 }
-                else
-                {
-                    MessageBox.Show("Error", "Sistema");
-                }
+                else MessageBox.Show("error al eliminar al alumno", "Sistema");
             }
         }
 
-        private void btnImportar_Click(object sender, EventArgs e)
+        private void btnInsertar_Click(object sender, EventArgs e)
         {
-            string path;
+            String path;
             DialogResult dr = ofdExcel.ShowDialog();
             if (dr == DialogResult.OK)
             {
                 path = ofdExcel.FileName;
-                ExcelPackage.License.SetNonCommercialPersonal("Giovanni");
-                using (ExcelPackage excel = new ExcelPackage(new FileInfo(path)))
+                ExcelPackage.License.SetNonCommercialPersonal("Luis Mota"); //Libreria funcion no Comercial
+                using (var package = new ExcelPackage(new FileInfo(path)))
                 {
-                    ExcelWorksheet ws = excel.Workbook.Worksheets[0];
-                    int rowCount = ws.Dimension.Rows;
-                    int columnn = ws.Dimension.Columns;
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+                    int rowCount = worksheet.Dimension.Rows;
+                    int colCount = worksheet.Dimension.Columns;
                     DataTable dt = new DataTable();
-                    for (int col = 1; col <= columnn; col++)
+                    for (int col = 1; col <= colCount; col++)
                     {
-                        dt.Columns.Add(ws.Cells[1, col].Value.ToString());
+                        dt.Columns.Add(worksheet.Cells[1, col].Value.ToString());
                     }
                     for (int row = 2; row <= rowCount; row++)
                     {
-                        DataRow drnew = dt.NewRow();
-                        for (int col = 1; col <= columnn; col++)
+                        DataRow drNew = dt.NewRow();
+                        for (int col = 1; col <= colCount; col++)
                         {
-                            drnew[col - 1] = ws.Cells[row, col].Value.ToString();
+                            drNew[col - 1] = worksheet.Cells[row, col].Value.ToString();
                         }
-                        dt.Rows.Add(drnew);
-                        String comando;
+                        dt.Rows.Add(drNew);
+                        String comando = $"Insert Into Alumnos(nocontrol,nombre," +
+                            $"paterno,materno) Values('{drNew.ItemArray[0]}','" +
+                            $"{drNew.ItemArray[1]}','{drNew.ItemArray[2]}','" +
+                            $"{drNew.ItemArray[3]}')";
+                        datos.ejecutarComando(comando);
+
                     }
                 }
             }

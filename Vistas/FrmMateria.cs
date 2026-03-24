@@ -3,46 +3,37 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Windows.Forms;
-using WINMYSQL.CLASES;
+using WinMySQL.Clases;
 
-namespace WINMYSQL.VISTAS
+namespace WinMySQL.Vistas
 {
     public partial class FrmMateria : Form
     {
-        int id = 0;
+        Datos datos = new Datos();
         bool updating = false;
-        Datos dt = new Datos();
+        int id = 0;
         public FrmMateria()
         {
-
-
             InitializeComponent();
         }
-
-        public FrmMateria(int id, string Materia, string cve)
+        public FrmMateria(int id, String materia, string CVE)
         {
             InitializeComponent();
             this.id = id;
-            txtMateria.Text = Materia;
-            txtClaveMateria.Text = cve;
+            txtMateria.Text = materia;
+            txtClaveMateria.Text = CVE;
             updating = true;
-
-        }
-
-        private void FrmMateria_Load(object sender, EventArgs e)
-        {
-
-
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (updating == false)
+            if (updating==false)
             {
-                bool resultado = dt.ejecutarcomando(
-                    $"Insert into Materia (Materia,CVE) " +
+                bool resultado = datos.ejecutarcomando(
+                    $"Insert into Materias (Materia,CVE) " +
                     $"values ('{txtMateria.Text}','{txtClaveMateria.Text}')");
 
                 if (resultado)
@@ -57,9 +48,9 @@ namespace WINMYSQL.VISTAS
             }
             else
             {
-                bool resultado = dt.ejecutarcomando(
-                    $"Update Materia set Materia='{txtMateria.Text}', CVE='{txtClaveMateria.Text}' " +
-                    $"where idMateria={id}");
+                bool resultado = datos.ejecutarcomando(
+                    $"Update Materias set Materia='{txtMateria.Text}', CVE='{txtClaveMateria.Text}' " +
+                    $"where IdMaterias={id}");
                 if (resultado)
                 {
                     MessageBox.Show("Materia actualizada correctamente");

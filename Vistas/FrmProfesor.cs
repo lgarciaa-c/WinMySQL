@@ -5,60 +5,62 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using WINMYSQL.CLASES;
+using WinMySQL.Clases;
 
-namespace WINMYSQL.VISTAS
+namespace WinMySQL.Vistas
 {
     public partial class FrmProfesor : Form
     {
-        int id = 0;
+        Datos datos = new Datos();
         bool updating = false;
-        Datos dt = new Datos();
+        int id = 0;
         public FrmProfesor()
         {
             InitializeComponent();
         }
-
-        public FrmProfesor(int id, string Profesor, string cve)
+        public FrmProfesor(int id, String Nombre, String paterno, String Materno, String Area, int Materias)
         {
             InitializeComponent();
             this.id = id;
-            txtProfesor.Text = Profesor;
-            txtClave.Text = cve;
+            txtNombre.Text = Nombre;
+            txtPaterno.Text = paterno;
+            txtMaterno.Text = Materno;
+            txtArea.Text = Area.ToString();
+            txtMaterias.Text = Materias.ToString();
             updating = true;
         }
-
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             if (updating == false)
             {
-                bool resultado = dt.ejecutarcomando(
-                    $"Insert into Profesor (Profesor,CVE) " +
-                    $"values ('{txtProfesor.Text}','{txtClave.Text}')");
+                bool resultado = datos.ejecutarcomando(
+                    $"Insert into Profesores (Nombre,ApellidoPat,ApellidoMat,Area,NoMaterias) " +
+                    $"values ('{txtNombre.Text}','{txtPaterno.Text}','{txtMaterno.Text}','{txtArea.Text}',{txtMaterias.Text})");
 
                 if (resultado)
                 {
-                    MessageBox.Show("Profesor agregado correctamente");
+                    MessageBox.Show("Profesor agregada correctamente");
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Error al agregar la Profesor");
+                    MessageBox.Show("Error al agregar al Profesor");
                 }
             }
             else
             {
-                bool resultado = dt.ejecutarcomando(
-                    $"Update Profesor set Profesor='{txtProfesor.Text}', CVE='{txtClave.Text}' " +
-                    $"where idProfesor={id}");
+                bool resultado = datos.ejecutarcomando($"Update Profesor set Nombre='{txtNombre.Text}', ApellidoPat='{txtPaterno.Text}', " +
+                    $"ApellidoMat='{txtMaterno.Text}', Area={txtArea.Text}, " +
+                    $"NoMaterias={txtMaterias.Text}" +
+                    $"where IdProfesores={id}");
                 if (resultado)
                 {
-                    MessageBox.Show("Profesor actualizado correctamente");
+                    MessageBox.Show("Profesor actualizada correctamente");
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Error al actualizar el Profesor");
+                    MessageBox.Show("Error al actualizar al Profesor");
                 }
             }
         }
