@@ -47,7 +47,7 @@ namespace WinMySQL.Vistas
             // 
             splitContainer1.Panel2.Controls.Add(dataGridView1);
             splitContainer1.Size = new Size(800, 450);
-            splitContainer1.SplitterDistance = 110;
+            splitContainer1.SplitterDistance = 166;
             splitContainer1.TabIndex = 0;
             // 
             // label1
@@ -92,7 +92,7 @@ namespace WinMySQL.Vistas
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(800, 336);
+            dataGridView1.Size = new Size(800, 280);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             dataGridView1.KeyDown += dataGridView1_KeyDown;
