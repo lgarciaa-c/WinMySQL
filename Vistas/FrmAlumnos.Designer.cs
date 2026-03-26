@@ -37,6 +37,7 @@
             dgvAlumnos = new DataGridView();
             cmsAlumno = new ContextMenuStrip(components);
             eliminarToolStripMenuItem = new ToolStripMenuItem();
+            btnLimpiar = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -54,6 +55,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(btnLimpiar);
             splitContainer1.Panel1.Controls.Add(btnInsertar);
             splitContainer1.Panel1.Controls.Add(btnAgregarAlumno);
             splitContainer1.Panel1.Controls.Add(txtMaterias);
@@ -68,7 +70,7 @@
             // 
             // btnInsertar
             // 
-            btnInsertar.Location = new Point(684, 23);
+            btnInsertar.Location = new Point(579, 19);
             btnInsertar.Name = "btnInsertar";
             btnInsertar.Size = new Size(75, 23);
             btnInsertar.TabIndex = 6;
@@ -78,7 +80,7 @@
             // 
             // btnAgregarAlumno
             // 
-            btnAgregarAlumno.Location = new Point(684, 65);
+            btnAgregarAlumno.Location = new Point(579, 62);
             btnAgregarAlumno.Name = "btnAgregarAlumno";
             btnAgregarAlumno.Size = new Size(75, 23);
             btnAgregarAlumno.TabIndex = 5;
@@ -126,6 +128,16 @@
             eliminarToolStripMenuItem.Text = "Eliminar";
             eliminarToolStripMenuItem.Click += eliminarToolStripMenuItem_Click;
             // 
+            // btnLimpiar
+            // 
+            btnLimpiar.Location = new Point(689, 52);
+            btnLimpiar.Name = "btnLimpiar";
+            btnLimpiar.Size = new Size(75, 23);
+            btnLimpiar.TabIndex = 7;
+            btnLimpiar.Text = "Eliminar";
+            btnLimpiar.UseVisualStyleBackColor = true;
+            btnLimpiar.Click += btnLimpiar_Click;
+            // 
             // FrmAlumnos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -156,5 +168,6 @@
         private ContextMenuStrip cmsAlumno;
         private ToolStripMenuItem eliminarToolStripMenuItem;
         private Button btnInsertar;
+        private Button btnLimpiar;
     }
 }

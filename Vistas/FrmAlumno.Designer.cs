@@ -35,11 +35,7 @@
             txtPaterno = new TextBox();
             txtMaterno = new TextBox();
             label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
             txtNumeroControl = new TextBox();
-            txtSemestre = new TextBox();
-            txtCarrera = new TextBox();
             btnAceptar = new Button();
             SuspendLayout();
             // 
@@ -100,44 +96,12 @@
             label4.TabIndex = 6;
             label4.Text = "Numero de Control";
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(235, 71);
-            label5.Name = "label5";
-            label5.Size = new Size(55, 15);
-            label5.TabIndex = 7;
-            label5.Text = "Semestre";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(454, 71);
-            label6.Name = "label6";
-            label6.Size = new Size(45, 15);
-            label6.TabIndex = 8;
-            label6.Text = "Carrera";
-            // 
             // txtNumeroControl
             // 
             txtNumeroControl.Location = new Point(19, 89);
             txtNumeroControl.Name = "txtNumeroControl";
             txtNumeroControl.Size = new Size(184, 23);
             txtNumeroControl.TabIndex = 9;
-            // 
-            // txtSemestre
-            // 
-            txtSemestre.Location = new Point(235, 89);
-            txtSemestre.Name = "txtSemestre";
-            txtSemestre.Size = new Size(184, 23);
-            txtSemestre.TabIndex = 10;
-            // 
-            // txtCarrera
-            // 
-            txtCarrera.Location = new Point(454, 89);
-            txtCarrera.Name = "txtCarrera";
-            txtCarrera.Size = new Size(184, 23);
-            txtCarrera.TabIndex = 11;
             // 
             // btnAceptar
             // 
@@ -155,11 +119,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(662, 181);
             Controls.Add(btnAceptar);
-            Controls.Add(txtCarrera);
-            Controls.Add(txtSemestre);
             Controls.Add(txtNumeroControl);
-            Controls.Add(label6);
-            Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(txtMaterno);
             Controls.Add(txtPaterno);
@@ -182,11 +142,7 @@
         private TextBox txtPaterno;
         private TextBox txtMaterno;
         private Label label4;
-        private Label label5;
-        private Label label6;
         private TextBox txtNumeroControl;
-        private TextBox txtSemestre;
-        private TextBox txtCarrera;
         private Button btnAceptar;
     }
 }

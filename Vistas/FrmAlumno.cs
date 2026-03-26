@@ -19,30 +19,26 @@ namespace WinMySQL.Vistas
         {
             InitializeComponent();
         }
-        public FrmAlumno(int id,String Nombre,String paterno,String Materno,int NC,int semestre, String carrera)
+        public FrmAlumno(int id, String Nombre, String paterno, String Materno, int NC)
         {
             InitializeComponent();
             this.id = id;
-            txtNombre.Text= Nombre;
-            txtPaterno.Text= paterno;
-            txtMaterno.Text= Materno;
+            txtNombre.Text = Nombre;
+            txtPaterno.Text = paterno;
+            txtMaterno.Text = Materno;
             txtNumeroControl.Text = NC.ToString();
-            txtSemestre.Text = semestre.ToString();
-            txtCarrera.Text = carrera.ToString();
             updating = true;
-
         }
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             if (updating == false)
             {
                 bool resultado = datos.ejecutarcomando(
-                    $"Insert into Alumnos (Nombre,ApellidoPat,ApellidoMat,NumeroControl,Semestre,Carrera) " +
-                    $"values ('{txtNombre.Text}','{txtPaterno.Text}','{txtMaterno.Text}',{txtNumeroControl.Text},{txtSemestre.Text},'{txtCarrera.Text}')");
-
+                 $"INSERT INTO Alumnos (CONTROL, Nombre, Paterno, Materno) " +
+                    $"VALUES ({txtNumeroControl.Text}, '{txtNombre.Text}', '{txtPaterno.Text}', '{txtMaterno.Text}')");
                 if (resultado)
                 {
-                    MessageBox.Show("Alumno agregada correctamente");
+                    MessageBox.Show("Alumno agregado correctamente");
                     this.Close();
                 }
                 else
@@ -52,10 +48,13 @@ namespace WinMySQL.Vistas
             }
             else
             {
-                bool resultado = datos.ejecutarcomando($"Update Alumnos set Nombre='{txtNombre.Text}', ApellidoPat='{txtPaterno.Text}', " +
-                    $"ApellidoMat='{txtMaterno.Text}', NumeroControl={txtNumeroControl.Text}, " +
-                    $"Semestre={txtSemestre.Text}, Carrera='{txtCarrera.Text}' " +
-                    $"where IdAlumnos={id}");
+                bool resultado = datos.ejecutarcomando(
+                    $"UPDATE Alumnos SET " +
+                    $"Nombre='{txtNombre.Text}', " +
+                    $"Paterno='{txtPaterno.Text}', " +
+                    $"Materno='{txtMaterno.Text}' " +
+                    $"WHERE CONTROL={id}");
+
                 if (resultado)
                 {
                     MessageBox.Show("Alumno actualizada correctamente");

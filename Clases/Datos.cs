@@ -8,7 +8,7 @@ namespace WinMySQL.Clases
 {
     internal class Datos
     {
-        String cadenaConexion = "server=localhost; user=luis; pwd = joseluis ";
+        String cadenaConexion = "server=localhost; database=escolar; user=luis; pwd = joseluis ";
         MySqlConnection conexion;
 
         private void conectar()
@@ -65,7 +65,7 @@ namespace WinMySQL.Clases
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message, "Error SQL"); 
                 return false;
             }
         }
