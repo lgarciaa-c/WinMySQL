@@ -14,6 +14,9 @@ namespace WinMySQL.Vistas
         {
             components = new System.ComponentModel.Container();
             splitContainer1 = new SplitContainer();
+            label2 = new Label();
+            btnBuscar = new Button();
+            txtNum = new TextBox();
             label1 = new Label();
             dateTimePicker1 = new DateTimePicker();
             btnGuardar = new Button();
@@ -38,6 +41,9 @@ namespace WinMySQL.Vistas
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(label2);
+            splitContainer1.Panel1.Controls.Add(btnBuscar);
+            splitContainer1.Panel1.Controls.Add(txtNum);
             splitContainer1.Panel1.Controls.Add(label1);
             splitContainer1.Panel1.Controls.Add(dateTimePicker1);
             splitContainer1.Panel1.Controls.Add(btnGuardar);
@@ -50,10 +56,37 @@ namespace WinMySQL.Vistas
             splitContainer1.SplitterDistance = 166;
             splitContainer1.TabIndex = 0;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(174, 106);
+            label2.Name = "label2";
+            label2.Size = new Size(86, 15);
+            label2.TabIndex = 6;
+            label2.Text = "Buscar alumno";
+            // 
+            // btnBuscar
+            // 
+            btnBuscar.Location = new Point(537, 102);
+            btnBuscar.Name = "btnBuscar";
+            btnBuscar.Size = new Size(75, 23);
+            btnBuscar.TabIndex = 5;
+            btnBuscar.Text = "Buscar";
+            btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Click += btnBuscar_Click;
+            // 
+            // txtNum
+            // 
+            txtNum.Location = new Point(278, 103);
+            txtNum.Name = "txtNum";
+            txtNum.Size = new Size(220, 23);
+            txtNum.TabIndex = 4;
+            txtNum.KeyDown += txtNum_KeyDown;
+            // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(341, 20);
+            label1.Location = new Point(210, 44);
             label1.Name = "label1";
             label1.Size = new Size(38, 15);
             label1.TabIndex = 0;
@@ -62,7 +95,7 @@ namespace WinMySQL.Vistas
             // dateTimePicker1
             // 
             dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(258, 45);
+            dateTimePicker1.Location = new Point(274, 46);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(220, 23);
             dateTimePicker1.TabIndex = 1;
@@ -137,5 +170,8 @@ namespace WinMySQL.Vistas
         private Label lblConteo;
         private ContextMenuStrip cmsAlumno;
         private ToolStripMenuItem eliminarToolStripMenuItem;
+        private TextBox txtNum;
+        private Button btnBuscar;
+        private Label label2;
     }
 }

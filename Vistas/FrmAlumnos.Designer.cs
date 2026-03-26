@@ -30,6 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             splitContainer1 = new SplitContainer();
+            btnLimpiar = new Button();
             btnInsertar = new Button();
             btnAgregarAlumno = new Button();
             txtMaterias = new TextBox();
@@ -37,7 +38,6 @@
             dgvAlumnos = new DataGridView();
             cmsAlumno = new ContextMenuStrip(components);
             eliminarToolStripMenuItem = new ToolStripMenuItem();
-            btnLimpiar = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -67,6 +67,16 @@
             splitContainer1.Size = new Size(800, 450);
             splitContainer1.SplitterDistance = 105;
             splitContainer1.TabIndex = 0;
+            // 
+            // btnLimpiar
+            // 
+            btnLimpiar.Location = new Point(689, 52);
+            btnLimpiar.Name = "btnLimpiar";
+            btnLimpiar.Size = new Size(75, 23);
+            btnLimpiar.TabIndex = 7;
+            btnLimpiar.Text = "Eliminar";
+            btnLimpiar.UseVisualStyleBackColor = true;
+            btnLimpiar.Click += btnLimpiar_Click;
             // 
             // btnInsertar
             // 
@@ -114,6 +124,7 @@
             dgvAlumnos.Size = new Size(800, 341);
             dgvAlumnos.TabIndex = 0;
             dgvAlumnos.CellContentDoubleClick += dgvAlumnos_CellContentDoubleClick;
+            dgvAlumnos.CellEndEdit += dgvAlumnos_CellEndEdit;
             // 
             // cmsAlumno
             // 
@@ -127,16 +138,6 @@
             eliminarToolStripMenuItem.Size = new Size(117, 22);
             eliminarToolStripMenuItem.Text = "Eliminar";
             eliminarToolStripMenuItem.Click += eliminarToolStripMenuItem_Click;
-            // 
-            // btnLimpiar
-            // 
-            btnLimpiar.Location = new Point(689, 52);
-            btnLimpiar.Name = "btnLimpiar";
-            btnLimpiar.Size = new Size(75, 23);
-            btnLimpiar.TabIndex = 7;
-            btnLimpiar.Text = "Eliminar";
-            btnLimpiar.UseVisualStyleBackColor = true;
-            btnLimpiar.Click += btnLimpiar_Click;
             // 
             // FrmAlumnos
             // 

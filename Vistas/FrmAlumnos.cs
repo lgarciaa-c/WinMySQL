@@ -149,5 +149,34 @@ namespace WinMySQL.Vistas
                 }
             }
         }
+
+        private void dgvAlumnos_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                DataGridViewRow row = dgvAlumnos.Rows[e.RowIndex];
+
+                string control = row.Cells[0].Value?.ToString() ?? "";
+                string paterno = row.Cells[1].Value?.ToString() ?? "";
+                string materno = row.Cells[2].Value?.ToString() ?? "";
+                string nombre = row.Cells[3].Value?.ToString() ?? "";
+
+                bool ok = datos.ejecutarcomando(
+                    $"UPDATE Alumnos SET " +
+                    $"Paterno='{paterno}', " +
+                    $"Materno='{materno}', " +
+                    $"Nombre='{nombre}' " +
+                    $"WHERE CONTROL={control}");
+
+                if (ok)
+                    MessageBox.Show("Alumno actualizado correctamente.", "Sistema");
+                else
+                    MessageBox.Show("Error al actualizar el alumno.", "Sistema");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al editar: " + ex.Message, "Error");
+            }
+        }
     }
 }
