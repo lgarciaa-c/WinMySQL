@@ -55,6 +55,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.BackColor = Color.Green;
             splitContainer1.Panel1.Controls.Add(btnLimpiar);
             splitContainer1.Panel1.Controls.Add(btnInsertar);
             splitContainer1.Panel1.Controls.Add(btnAgregarAlumno);
@@ -70,37 +71,40 @@
             // 
             // btnLimpiar
             // 
+            btnLimpiar.BackColor = Color.Cyan;
             btnLimpiar.Location = new Point(689, 52);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(75, 23);
             btnLimpiar.TabIndex = 7;
             btnLimpiar.Text = "Eliminar";
-            btnLimpiar.UseVisualStyleBackColor = true;
+            btnLimpiar.UseVisualStyleBackColor = false;
             btnLimpiar.Click += btnLimpiar_Click;
             // 
             // btnInsertar
             // 
+            btnInsertar.BackColor = Color.Cyan;
             btnInsertar.Location = new Point(579, 19);
             btnInsertar.Name = "btnInsertar";
             btnInsertar.Size = new Size(75, 23);
             btnInsertar.TabIndex = 6;
             btnInsertar.Text = "Insertar";
-            btnInsertar.UseVisualStyleBackColor = true;
+            btnInsertar.UseVisualStyleBackColor = false;
             btnInsertar.Click += btnInsertar_Click;
             // 
             // btnAgregarAlumno
             // 
+            btnAgregarAlumno.BackColor = Color.Cyan;
             btnAgregarAlumno.Location = new Point(579, 62);
             btnAgregarAlumno.Name = "btnAgregarAlumno";
             btnAgregarAlumno.Size = new Size(75, 23);
             btnAgregarAlumno.TabIndex = 5;
             btnAgregarAlumno.Text = "Agregar";
-            btnAgregarAlumno.UseVisualStyleBackColor = true;
+            btnAgregarAlumno.UseVisualStyleBackColor = false;
             btnAgregarAlumno.Click += btnAgregarAlumno_Click;
             // 
             // txtMaterias
             // 
-            txtMaterias.Location = new Point(3, 41);
+            txtMaterias.Location = new Point(12, 41);
             txtMaterias.Name = "txtMaterias";
             txtMaterias.Size = new Size(531, 23);
             txtMaterias.TabIndex = 4;
@@ -108,9 +112,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(3, 23);
+            label1.Font = new Font("Sitka Banner", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(12, 10);
             label1.Name = "label1";
-            label1.Size = new Size(42, 15);
+            label1.Size = new Size(66, 28);
             label1.TabIndex = 3;
             label1.Text = "Buscar";
             // 

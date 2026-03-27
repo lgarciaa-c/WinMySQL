@@ -41,6 +41,7 @@ namespace WinMySQL.Vistas
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.BackColor = Color.SlateGray;
             splitContainer1.Panel1.Controls.Add(label2);
             splitContainer1.Panel1.Controls.Add(btnBuscar);
             splitContainer1.Panel1.Controls.Add(txtNum);
@@ -59,20 +60,23 @@ namespace WinMySQL.Vistas
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(174, 106);
+            label2.Font = new Font("Sitka Banner", 15.7499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(130, 95);
             label2.Name = "label2";
-            label2.Size = new Size(86, 15);
+            label2.Size = new Size(142, 30);
             label2.TabIndex = 6;
             label2.Text = "Buscar alumno";
             // 
             // btnBuscar
             // 
-            btnBuscar.Location = new Point(537, 102);
+            btnBuscar.BackColor = Color.FromArgb(128, 255, 255);
+            btnBuscar.ForeColor = Color.Black;
+            btnBuscar.Location = new Point(519, 102);
             btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(75, 23);
+            btnBuscar.Size = new Size(112, 24);
             btnBuscar.TabIndex = 5;
             btnBuscar.Text = "Buscar";
-            btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.UseVisualStyleBackColor = false;
             btnBuscar.Click += btnBuscar_Click;
             // 
             // txtNum
@@ -86,28 +90,32 @@ namespace WinMySQL.Vistas
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(210, 44);
+            label1.Font = new Font("Sitka Banner", 15.7499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(169, 40);
             label1.Name = "label1";
-            label1.Size = new Size(38, 15);
+            label1.Size = new Size(74, 30);
             label1.TabIndex = 0;
-            label1.Text = "Fecha";
+            label1.Text = "FECHA";
             // 
             // dateTimePicker1
             // 
+            dateTimePicker1.Font = new Font("Sitka Banner Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(274, 46);
+            dateTimePicker1.Location = new Point(274, 40);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(220, 23);
+            dateTimePicker1.Size = new Size(220, 28);
             dateTimePicker1.TabIndex = 1;
             dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(500, 44);
+            btnGuardar.BackColor = Color.FromArgb(192, 255, 255);
+            btnGuardar.Location = new Point(519, 40);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(100, 25);
+            btnGuardar.Size = new Size(112, 29);
             btnGuardar.TabIndex = 2;
             btnGuardar.Text = "Guardar";
+            btnGuardar.UseVisualStyleBackColor = false;
             btnGuardar.Click += btnGuardar_Click;
             // 
             // lblConteo

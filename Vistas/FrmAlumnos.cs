@@ -141,7 +141,7 @@ namespace WinMySQL.Vistas
                 if (f)
                 {
                     MessageBox.Show("Tabla limpiada correctamente", "Sistema");
-                    FrmAlumnos_Load(sender, e); // recargar tabla
+                    FrmAlumnos_Load(sender, e);
                 }
                 else
                 {

@@ -29,6 +29,11 @@ namespace WinMySQL
 
         private void asistenciaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+         
+        }
+
+        private void asistenciaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
             FrmAsistencia asi = new FrmAsistencia();
             asi.Show();
         }

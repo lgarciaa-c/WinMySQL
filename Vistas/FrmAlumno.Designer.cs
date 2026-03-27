@@ -117,6 +117,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(192, 255, 255);
             ClientSize = new Size(662, 181);
             Controls.Add(btnAceptar);
             Controls.Add(txtNumeroControl);
@@ -128,7 +129,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "FrmAlumno";
-            Text = "FrmAlumno";
+            Text = "Agregar Alumno";
             ResumeLayout(false);
             PerformLayout();
         }
