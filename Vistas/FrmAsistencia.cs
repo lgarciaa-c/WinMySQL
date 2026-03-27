@@ -200,7 +200,6 @@ namespace WinMySQL.Vistas
                     return;
                 }
 
-                // ✅ Buscar el alumno en el DataGridView y marcar la palomita
                 bool encontrado = false;
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
